@@ -1,6 +1,11 @@
 # EVENTEX
 
+
 Sistema de Eventos encomendado pela Morena.
+
+[![Build Status](https://travis-ci.org/lffsantos/eventex.svg?branch=master)](https://travis-ci.org/lffsantos/eventex)
+[![Code Health](https://landscape.io/github/lffsantos/eventex/master/landscape.svg?style=flat)](https://landscape.io/github/lffsantos/eventex/master)
+
 
 ## Como desenvolver?
 

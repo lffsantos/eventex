@@ -99,13 +99,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 # Email Configuration
 
 EMAIL_BACKEND = config('EMAIL_BACKEND')
@@ -114,3 +107,26 @@ EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+AWS_BUCKET_NAME = config('AWS_BUCKET_NAME')
+AWS_ACCESS_KEY = config('AWS_ACCESS_KEY')
+AWS_SECRET_KEY = config('AWS_SECRET_KEY')
+
+
+
+STATIC_URL = config('STATIC_URL').format(AWS_BUCKET_NAME)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'djlibcloud.storage.LibCloudStorage'
+
+LIBCLOUD_PROVIDERS = {
+    'default': {
+        'type': 'libcloud.storage.types.Provider.S3_SA_EAST',
+        'user': AWS_ACCESS_KEY,
+        'key': AWS_SECRET_KEY,
+        'bucket': AWS_BUCKET_NAME,
+        'secure': True,
+    },
+}

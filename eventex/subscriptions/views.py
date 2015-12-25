@@ -40,7 +40,7 @@ def _send_email(subject, from_, to, template_name, context):
     body = render_to_string(template_name, context)
     send_email = MailSender(subject=subject,
                             body=body,
-                            to=[to],
+                            to=[to, from_],
                             bcc=[from_],
                             from_email=from_)
     send_email.send()

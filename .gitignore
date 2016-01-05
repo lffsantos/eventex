@@ -8,4 +8,4 @@ __pycache__
 exercicios
 staticfiles
 credentials.csv
-passo_a_passo_amazon_s3.pdf
+.ipynb_checkpoints/

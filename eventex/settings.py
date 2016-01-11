@@ -121,14 +121,18 @@ AWS_SECRET_KEY = config('AWS_SECRET_KEY')
 
 STATIC_URL = config('STATIC_URL').format(AWS_BUCKET_NAME)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'djlibcloud.storage.LibCloudStorage'
 
-LIBCLOUD_PROVIDERS = {
-    'default': {
-        'type': 'libcloud.storage.types.Provider.S3_SA_EAST',
-        'user': AWS_ACCESS_KEY,
-        'key': AWS_SECRET_KEY,
-        'bucket': AWS_BUCKET_NAME,
-        'secure': True,
-    },
-}
+PROD_ENV = config('PROD_ENV', default=True, cast=bool)
+
+if PROD_ENV:
+    STATICFILES_STORAGE = 'djlibcloud.storage.LibCloudStorage'
+
+    LIBCLOUD_PROVIDERS = {
+        'default': {
+            'type': 'libcloud.storage.types.Provider.S3_SA_EAST',
+            'user': AWS_ACCESS_KEY,
+            'key': AWS_SECRET_KEY,
+            'bucket': AWS_BUCKET_NAME,
+            'secure': True,
+        },
+    }

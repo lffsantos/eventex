@@ -15,7 +15,9 @@
                 </div>
                 <div class="form-row label-block input-text">
                     <label for="{{ form.cpf.id_for_label }}">{{ form.cpf.label }}</label>
-                    {{ form.cpf.errors }}
+                    {% if  form.cpf.errors %}
+                          {{ form.cpf.errors }}
+                    {% endif %}
                     {{ form.cpf }}
                 </div>
                 <div class="form-row label-block input-text">
@@ -34,4 +36,18 @@
     </div>
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+          teste
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content%}
